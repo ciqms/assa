@@ -1,152 +1,21 @@
-{% include 'header.twig' %}
+<script>
+const SP_PUBLIC_KEY = "YOUR_PUBLIC_KEY"; //Your website public key
+const SP_FORM_ID = "#spaceremit-form"; // Identifier for the form
+const SP_SELECT_RADIO_NAME = "sp-pay-type-radio"; // Name attribute of radio buttons
 
-<div class="wrapper-content__body">
-    <div id="block_252">
-        <div class="faq">
-            <div class="bg"></div>
-            <div class="divider-top"></div>
-            <div class="divider-bottom"></div>
-            <div class="container">
-                <div class="row justify-content-center">
-                    <div class="col-lg-8">
-                        <div class="row">
-                            <div class="col-lg-12">
-                                <div class="faq-block__card">
-                                    <div class="card">
-                                        <div class="faq-block__header collapsed" data-toggle="collapse" data-target="#faq-block-252-4" aria-expanded="false" aria-controls="#faq-block-252-4">
-                                            <div class="faq-block__header-title">
-                                                <h4>قواعد الاستخدام (يجب القراءة)</h4>
-                                            </div>
-                                            <div class="faq-block__header-icon">
-                                                <div class="style-text-dark faq-block__icon"></div>
-                                            </div>
-                                        </div>
-                                        <div class="faq-block__body collapse" id="faq-block-252-4">
-                                            <div class="faq-block__body-description" style="padding-top: 8px"><br>
-                                                <ol style="text-align: right; direction: rtl;">
-                                                    <li>لمتابعين إنستجرام، يجب أن تكون الكمية من مضاعفات 50 أو 100 وإذا لا سيتم إلغاء الطلب.</li>
-                                                    <li>إعادة التعبئة تعمل بعد انخفاض 10%</li>
-                                                    <li>سيتم إعادة تعبئة الطلبات التي تظهر أعدادها بين العدد الأولي والعدد النهائي فقط</li>
-                                                    <li>بعد تقديم الطلب، لا تطلب الإلغاء أو تغيير الرابط، ليس لدينا ضمان 100% للإلغاء أو الاسترداد</li>
-                                                    <li>قدم طلب واحد في كل مرة، إذا قدمت طلب آخر على نفس الرابط قبل اكتمال الطلب القديم، سنقوم بتسليم طلب واحد فقط حسب العدد الأولي ولكن سيتم خصم المبلغ لكلا الطلبين</li>
-                                                    <li>متابعونا لا ينخفضون مرة أخرى بعد إعادة التعبئة الأولى، فلا تقلق إذا انخفض المتابعون بنسبة 10/20%، فقط أعد تعبئتهم ولن ينخفضوا مرة أخرى.</li>
-                                                    <li>لا تقدم تذكرة قبل مرور 24 ساعة من تقديم الطلب</li>
-                                                    <li>لا تقدم تذاكر متعددة لنفس الطلبات</li>
-                                                    <li>لا تسيء في التذاكر وإلا قد يتم تعليق الحساب</li>
-                                                    <li>تسليم المتابعين الهنود بطيء جدًا، قدم الطلب على مسؤوليتك</li>
-                                                    <li>بعد تحميل الرصيد، لا يمكن سحبه ويجب استخدامه في اللوحة فقط</li>
-                                                    <li>الخصم متاح فقط لأولئك الذين ينفقون 500 روبية يوميًا على الأقل في لوحتنا</li>
-                                                </ol>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-lg-8">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="faq-block__card">
-                            <div class="card">
-                                <div class="faq-block__header collapsed" data-toggle="collapse" data-target="#faq-block-252-5" aria-expanded="false" aria-controls="#faq-block-252-4">
-                                    <div class="faq-block__header-title">
-                                        <h4>تحقق من العروض والخدمات الجديدة</h4>
-                                    </div>
-                                    <div class="faq-block__header-icon">
-                                        <div class="style-text-dark faq-block__icon"></div>
-                                    </div>
-                                </div>
-                                <div class="faq-block__body collapse" id="faq-block-252-5">
-                                    <div class="faq-block__body-description" style="padding-top: 8px; text-align: right; direction: rtl;">
-                                        {{ contentText }}
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    
-    <div class="wrapper-content__body">
-        <div class="new_order-block">
-            <div class="container-fluid col-lg-8" style="margin-left: auto;">
-                <div class="row new-order-form">
-                    <div class="col-lg-12">
-                        <div class="component_form_group component_card component_radio_button">
-                            <div class="card">
-                                {% if error %}
-                                    <div class="alert alert-dismissible alert-danger" style="text-align: right;">
-                                        {{ errorText }}
-                                    </div>
-                                {% endif %}
-                                
-                                {% if data["order"]["success"] == 1 %}
-                                    <div class="alert alert-dismissible alert-success" style="text-align: right;">
-                                        <strong>{{ lang["neworder.success.id"] }}:</strong> {{ data['order']['id'] }} <br>
-                                        <strong>{{ lang["neworder.success.service"] }}:</strong> {{ data['order']['service'] }} <br>
-                                        <strong>{{ lang["neworder.success.link"] }}:</strong> {{ data['order']['link'] }} <br>
-                                        <strong>{{ lang["neworder.success.quantity"] }}:</strong> {{ data['order']['quantity'] }} <br>
-                                        <strong>{{ lang["neworder.success.charge"] }}:</strong> {{ data['order']['price'] }} <br>
-                                        <strong>{{ lang["neworder.success.balance"] }}:</strong> {{ data['order']['balance'] }} <br>
-                                    </div>
-                                {% endif %}
-                                
-                                {% if data["order"]["success"] == 2 %}
-                                    <div class="alert alert-dismissible alert-success" style="text-align: right;">
-                                        <strong>{{ lang["neworder.success.id"] }}:</strong> {{ data['order']['id'] }} <br>
-                                        <strong>{{ lang["neworder.success.service"] }}:</strong> {{ data['order']['service'] }} <br>
-                                        <strong>{{ lang["neworder.success.username"] }}:</strong> {{ data['order']['link'] }} <br>
-                                        <strong>{{ lang["neworder.success.quantity"] }}:</strong> {{ data['order']['min'] }} - {{ data['order']['max'] }} <br>
-                                        <strong>{{ lang["neworder.success.posts"] }}:</strong> {{ data['order']['posts'] }} <br>
-                                        <strong>{{ lang["neworder.success.delay"] }}:</strong> {{ data['order']['delay'] }} <br>
-                                    </div>
-                                {% endif %}
-                                
-                                <div class="well">
-                                    <form method="post" action="">
-                                        <div class="component_button_forms" style="text-align: right; direction: rtl;">
-                                            <div class="form-group">
-                                                <label for="orderform-category" class="control-label">{{ lang["neworder.category"] }}</label>
-                                                <select class="form-control" id="neworder_category" name="categories" style="text-align: right;">
-                                                    {% for category in categories %}
-                                                        <option value="{{ category["category_id"] }}" {% if category["category_id"] == data['categories'] %} selected {% endif %}>{{ category["category_name"] }}</option>
-                                                    {% endfor %}
-                                                </select>
-                                            </div>
-                                            
-                                            <div class="form-group">
-                                                <label for="orderform-service" class="control-label">{{ lang["neworder.service"] }}</label>
-                                                <select class="form-control" id="neworder_services" name="services" style="text-align: right;"></select>
-                                            </div>
-                                            
-                                            <div id="neworder_fields" style="text-align: right;"></div>
-                                            
-                                            <div class="form-group" id="charge_div">
-                                                <label for="charge" class="control-label">{{ lang["neworder.charge"] }}</label>
-                                                <input type="text" class="form-control" id="charge" readonly style="text-align: right;">
-                                            </div>
-                                            
-                                            <button type="submit" class="btn btn-big-primary">{{ lang["neworder.button"] }}</button>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+const LOCAL_METHODS_BOX_STATUS = true; // Status of local payment methods box
+const LOCAL_METHODS_PARENT_ID = "#spaceremit-local-methods-pay"; // Identifier for the container of local payment methods
 
-{% include 'footer.twig' %}
+const CARD_BOX_STATUS = true; // Status of card payment box
+const CARD_BOX_PARENT_ID = "#spaceremit-card-pay"; // Identifier for the container of card payment
+let SP_FORM_AUTO_SUBMIT_WHEN_GET_CODE = true; // Flag indicating whether the form should automatically submit when getting a code
+
+// Callback function for successful payment
+function SP_SUCCESSFUL_PAYMENT(spaceremit_code) {}
+// Callback function for failed payment
+function SP_FAILD_PAYMENT() {}
+// Callback function for receiving message
+function SP_RECIVED_MESSAGE(message) {alert(message);}
+// Callback function for needing authentication
+function SP_NEED_AUTH(target_auth_link) {}
+</script>
