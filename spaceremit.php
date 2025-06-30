@@ -1,15 +1,12 @@
 <script>
-const SP_PUBLIC_KEY = "YOUR_PUBLIC_KEY"; //Your website public key
+const SP_PUBLIC_KEY = "test_pkQBA08JH3G475BE54FEJ1KRYM361KGGL99HNCHBT231R80LZNEQ"; //Your website public key
 const SP_FORM_ID = "#spaceremit-form"; // Identifier for the form
 const SP_SELECT_RADIO_NAME = "sp-pay-type-radio"; // Name attribute of radio buttons
-
 const LOCAL_METHODS_BOX_STATUS = true; // Status of local payment methods box
 const LOCAL_METHODS_PARENT_ID = "#spaceremit-local-methods-pay"; // Identifier for the container of local payment methods
-
 const CARD_BOX_STATUS = true; // Status of card payment box
 const CARD_BOX_PARENT_ID = "#spaceremit-card-pay"; // Identifier for the container of card payment
 let SP_FORM_AUTO_SUBMIT_WHEN_GET_CODE = true; // Flag indicating whether the form should automatically submit when getting a code
-
 // Callback function for successful payment
 function SP_SUCCESSFUL_PAYMENT(spaceremit_code) {}
 // Callback function for failed payment
@@ -20,9 +17,8 @@ function SP_RECIVED_MESSAGE(message) {alert(message);}
 function SP_NEED_AUTH(target_auth_link) {}
 </script>
 
-
 <!-- Start of form -->
-<form id="spaceremit-form" style="width: 400px;padding: 10px;" action="ckeck-payment.php" method="post" > 
+<form id="spaceremit-form" style="width: 400px;padding: 10px;"> 
     <!-- Hidden input fields for amount and currency -->
     <input type="hidden" name="amount"  value="1">
     <input type="hidden" name="currency" value="USD">
@@ -31,6 +27,7 @@ function SP_NEED_AUTH(target_auth_link) {}
     <input type="hidden" name="fullname" value="<FULLNAME OF BUYER>">
     <input type="hidden" name="email"  value="<EMAIL OF BUYER>">
     <input type="hidden" name="phone"  value="<PHONE OF BUYER>">
+    <input type="hidden" name="notes"  value="<CUSTOM FEILD YOU WANT TO ADD>">
     
     <!-- Container for local payment methods -->
     <div class="sp-one-type-select">
@@ -58,3 +55,8 @@ function SP_NEED_AUTH(target_auth_link) {}
 </form> <!-- End of form -->
 
 <script src="https://spaceremit.com/api/v2/js_script/spaceremit.js" ></script><!-- Script tag to include Spaceremit JavaScript library -->
+
+curl https://spaceremit.com/api/v2/payment_info/ \
+-X POST \
+-H "Content-Type: application/json" \
+-d '{"private_key":"YOUR_SECRET_KEY","payment_id":"PAYMENT_ID"}'
